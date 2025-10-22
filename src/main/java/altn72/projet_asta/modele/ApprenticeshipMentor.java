@@ -3,6 +3,8 @@ package altn72.projet_asta.modele;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -28,5 +30,16 @@ public class ApprenticeshipMentor {
 
     @Column(name = "phone", length = 10)
     private String phone;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
+
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "id_account", nullable = false)
+    private UserAccount idAccount;
 
 }
