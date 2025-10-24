@@ -15,4 +15,16 @@ public class VisitService {
     public Visit getVisitById(Integer id) {
         return visitRepository.findById(id).orElse(null);
     }
+
+    public void createVisit(Visit visit) {
+        visitRepository.save(visit);
+    }
+
+    public void updateVisit(Visit visit) {
+        visitRepository.save(visit);
+    }
+
+    public void deleteVisit(Integer id) {
+        visitRepository.deleteById(id);
+    }
 }

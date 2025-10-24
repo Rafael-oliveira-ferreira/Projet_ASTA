@@ -15,4 +15,16 @@ public class ReportService {
     public Report getReportById(int idMission) {
         return reportRepository.findById(idMission).orElse(null);
     }
+
+    public void addReport(Report report) {
+        reportRepository.save(report);
+    }
+
+    public void updateReport(Report report) {
+        reportRepository.save(report);
+    }
+
+    public void deleteReport(int idMission) {
+        reportRepository.deleteById(idMission);
+    }
 }

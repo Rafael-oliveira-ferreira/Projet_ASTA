@@ -15,4 +15,16 @@ public class DefenseService {
     public Defense getDefenseById(Integer id) {
         return defenseRepository.findById(id).orElse(null);
     }
+
+    public void addDefense(Defense defense) {
+        defenseRepository.save(defense);
+    }
+
+    public void updateDefense(Defense defense) {
+        defenseRepository.save(defense);
+    }
+
+    public void deleteDefense(Integer id) {
+        defenseRepository.deleteById(id);
+    }
 }

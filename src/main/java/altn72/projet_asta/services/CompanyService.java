@@ -15,4 +15,16 @@ public class CompanyService {
     public Company getCompanyById(Integer id) {
         return companyRepository.findById(id).orElse(null);
     }
+
+    public void addCompany(Company company) {
+        companyRepository.save(company);
+    }
+
+    public void updateCompany(Company company) {
+        companyRepository.save(company);
+    }
+
+    public void deleteCompany(Integer id) {
+        companyRepository.deleteById(id);
+    }
 }

@@ -15,4 +15,16 @@ public class MissionService {
     public Mission getMissionById(Integer id) {
         return missionRepository.findById(id).orElse(null);
     }
+
+    public void addMission(Mission mission) {
+        missionRepository.save(mission);
+    }
+
+    public void updateMission(Mission mission) {
+        missionRepository.save(mission);
+    }
+
+    public void deleteMission(Integer id) {
+        missionRepository.deleteById(id);
+    }
 }

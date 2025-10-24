@@ -5,6 +5,7 @@ import altn72.projet_asta.services.ApprenticeshipMentorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class ApprenticeshipMentorController {
@@ -17,5 +18,10 @@ public class ApprenticeshipMentorController {
     @GetMapping("/mentor/{idMentor}")
     public ApprenticeshipMentor getMentorById(@PathVariable Integer idMentor) {
         return apprenticeshipMentorService.getApprenticeById(idMentor);
+    }
+
+    @PutMapping("/updateMentor/{idMentor}")
+    public void updateMentor(@PathVariable Integer idMentor, ApprenticeshipMentor mentor) {
+        apprenticeshipMentorService.updateApprenticeshipMentor(idMentor, mentor);
     }
 }
