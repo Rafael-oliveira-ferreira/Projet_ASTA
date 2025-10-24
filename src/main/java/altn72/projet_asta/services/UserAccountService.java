@@ -1,4 +1,4 @@
-package altn72.projet_asta.controller;
+package altn72.projet_asta.services;
 
 import altn72.projet_asta.modele.AccountRepository;
 import altn72.projet_asta.modele.UserAccount;

@@ -1,6 +1,6 @@
 package altn72.projet_asta.config;
 
-import altn72.projet_asta.controller.UserAccountService;
+import altn72.projet_asta.services.UserAccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
