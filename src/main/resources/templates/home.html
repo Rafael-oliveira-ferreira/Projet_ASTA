@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,6 +8,7 @@
     <title>Accueil</title>
 </head>
 <body>
-    <h1>Bienvenue sur la page d'accueil</h1>
+    <h1 th:if="${apprenticementor != null}" th:text="|Bienvenue ${apprenticementor.firstName} ${apprenticementor.lastName}|"></h1>
+    <h1 th:unless="${apprenticementor != null}">Bienvenue invité</h1>
 </body>
 </html>

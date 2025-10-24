@@ -1,7 +1,6 @@
 package altn72.projet_asta.modele;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "user_account")
@@ -60,5 +58,9 @@ public class UserAccount implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 }

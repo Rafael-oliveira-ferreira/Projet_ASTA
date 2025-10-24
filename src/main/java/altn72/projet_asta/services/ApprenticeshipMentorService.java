@@ -18,11 +18,13 @@ public class ApprenticeshipMentorService {
         return apprenticeshipMentorRepository.findById(id).orElse(null);
     }
 
+    public ApprenticeshipMentor getApprenticeshipByUserId(Integer id) {
+        return apprenticeshipMentorRepository.findByIdAccountId(id).orElse(null);
+    }
+
     public void updateApprenticeshipMentor(Integer idApprenticeshipMentor, ApprenticeshipMentor apprenticeshipMentor) {
         ApprenticeshipMentor existingMentor = apprenticeshipMentorRepository.findById(idApprenticeshipMentor).orElseThrow();
-        if (existingMentor != null) {
-            BeanUtils.copyProperties(apprenticeshipMentor, existingMentor, "id");
-            apprenticeshipMentorRepository.save(existingMentor);
-        }
+        BeanUtils.copyProperties(apprenticeshipMentor, existingMentor, "id");
+        apprenticeshipMentorRepository.save(existingMentor);
     }
 }

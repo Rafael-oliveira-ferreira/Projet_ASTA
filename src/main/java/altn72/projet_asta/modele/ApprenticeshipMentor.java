@@ -1,12 +1,10 @@
 package altn72.projet_asta.modele;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "apprenticeship_mentor")
@@ -42,4 +40,35 @@ public class ApprenticeshipMentor {
     @JoinColumn(name = "id_account", nullable = false)
     private UserAccount idAccount;
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getPositionTitle() {
+        return this.positionTitle;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public Company getCompany() {
+        return this.company;
+    }
+
+    public UserAccount getIdAccount() {
+        return this.idAccount;
+    }
 }
