@@ -20,5 +20,4 @@ public class UserAccountService implements UserDetailsService {
         return accountRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé: " + username));
     }
-
 }

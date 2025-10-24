@@ -2,9 +2,11 @@ package altn72.projet_asta.services;
 
 import altn72.projet_asta.modele.Apprentice;
 import altn72.projet_asta.modele.ApprenticeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ApprenticeService {
     private final ApprenticeRepository apprenticeRepository;
 
@@ -16,7 +18,7 @@ public class ApprenticeService {
         return apprenticeRepository.findAll();
     }
 
-    public Apprentice getApprenticeById(int id) {
+    public Apprentice getApprenticeById(Integer id) {
         return apprenticeRepository.findById(id).orElse(null);
     }
 }
