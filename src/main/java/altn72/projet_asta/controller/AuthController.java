@@ -46,7 +46,7 @@ public class AuthController {
 
         model.addAttribute("userAccount", userAccount);
 
-        ApprenticeshipMentor mentor = apprenticeshipMentorService.getApprenticeshipByUserId(userAccount.getId());
+        ApprenticeshipMentor mentor = apprenticeshipMentorService.getApprenticeshipMentorByUserId(userAccount.getId());
         if (mentor != null) {
             model.addAttribute("apprenticementor", mentor);
         }

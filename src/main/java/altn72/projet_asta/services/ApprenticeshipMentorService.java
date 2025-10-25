@@ -14,11 +14,11 @@ public class ApprenticeshipMentorService {
         this.apprenticeshipMentorRepository = apprenticeshipMentorRepository;
     }
 
-    public ApprenticeshipMentor getApprenticeById(Integer id) {
+    public ApprenticeshipMentor getApprenticeshipMentorById(Integer id) {
         return apprenticeshipMentorRepository.findById(id).orElse(null);
     }
 
-    public ApprenticeshipMentor getApprenticeshipByUserId(Integer id) {
+    public ApprenticeshipMentor getApprenticeshipMentorByUserId(Integer id) {
         return apprenticeshipMentorRepository.findByIdAccountId(id).orElse(null);
     }
 

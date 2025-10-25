@@ -17,7 +17,7 @@ public class ApprenticeshipMentorController {
 
     @GetMapping("/mentor/{idMentor}")
     public ApprenticeshipMentor getMentorById(@PathVariable Integer idMentor) {
-        return apprenticeshipMentorService.getApprenticeById(idMentor);
+        return apprenticeshipMentorService.getApprenticeshipMentorById(idMentor);
     }
 
     @PutMapping("/updateMentor/{idMentor}")
