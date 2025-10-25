@@ -1,11 +1,13 @@
 package altn72.projet_asta.controller;
 
 import altn72.projet_asta.modele.Apprentice;
+import altn72.projet_asta.modele.dto.ApprenticeDto;
 import altn72.projet_asta.services.ApprenticeService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 public class ApprenticeController {
     private final ApprenticeService apprenticeService;
 
@@ -32,4 +34,17 @@ public class ApprenticeController {
     public void createApprentice(@RequestBody Apprentice newApprentice) {
         apprenticeService.addApprentice(newApprentice);
     }
+
+    @GetMapping("/apprenticesByMentorId/{idMentor}")
+    public List<ApprenticeDto> getApprenticesByMentorId(@PathVariable("idMentor") Integer idMentor) {
+        return apprenticeService.findByMentorId(idMentor).stream()
+                .map(a -> new ApprenticeDto(
+                        a.getId(), a.getProgram(), a.getAcademicYear(),
+                        a.getMajor(), a.getFirstName(), a.getLastName(), a.getEmail(), a.getPhone(),
+                        a.getCompany() != null ? a.getCompany().getId() : null,
+                        a.getApprenticeshipMentor() != null ? a.getApprenticeshipMentor().getId() : null
+                ))
+                .toList();
+    }
+
 }

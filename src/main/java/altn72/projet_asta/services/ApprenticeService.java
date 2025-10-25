@@ -38,4 +38,8 @@ public class ApprenticeService {
     public void deleteApprentice(Integer id) {
         apprenticeRepository.deleteById(id);
     }
+
+    public List<Apprentice> findByMentorId(Integer mentorId) {
+        return apprenticeRepository.findByApprenticeshipMentor_Id(mentorId);
+    }
 }

@@ -1,5 +1,6 @@
 package altn72.projet_asta.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,12 +48,8 @@ public class Apprentice {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "mentor_id")
-    private ApprenticeshipMentor mentor;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "apprenticeship_mentor_id")
+    @JsonIgnore
     private ApprenticeshipMentor apprenticeshipMentor;
 
     @ManyToOne(fetch = FetchType.LAZY)

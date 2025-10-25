@@ -6,9 +6,113 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Accueil</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; max-width: 800px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #f5f5f5; }
+    </style>
 </head>
-<body>
-    <h1 th:if="${apprenticementor != null}" th:text="|Bienvenue ${apprenticementor.firstName} ${apprenticementor.lastName}|"></h1>
-    <h1 th:unless="${apprenticementor != null}">Bienvenue invité</h1>
+<body th:attr="data-mentor-id=${apprenticementor != null ? apprenticementor.id : 0}">
+<h1 th:if="${apprenticementor != null}" th:text="|Bienvenue ${apprenticementor.firstName} ${apprenticementor.lastName}|"></h1>
+<h1 th:unless="${apprenticementor != null}">Bienvenue invité</h1>
+
+<!-- Apprentices table -->
+<section id="apprentices-section" style="margin-top: 1rem;">
+    <h2>Apprentices</h2>
+    <table id="apprentices-table" aria-describedby="apprentices-section">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody id="apprentices-tbody">
+        <!-- rows injected here -->
+        </tbody>
+    </table>
+    <p id="no-apprentices" style="display:none;">No apprentices found.</p>
+</section>
+
+<script>
+    (function () {
+        function renderApprenticesTable(apprentices) {
+            var tbody = document.getElementById('apprentices-tbody');
+            var noMsg = document.getElementById('no-apprentices');
+            tbody.innerHTML = '';
+
+            if (!Array.isArray(apprentices) || apprentices.length === 0) {
+                noMsg.style.display = '';
+                return;
+            }
+            noMsg.style.display = 'none';
+
+            apprentices.forEach(function (a) {
+                var tr = document.createElement('tr');
+
+                var tdId = document.createElement('td');
+                tdId.textContent = a.id != null ? a.id : '';
+                tr.appendChild(tdId);
+
+                var tdFirst = document.createElement('td');
+                tdFirst.textContent = a.firstName != null ? a.firstName : '';
+                tr.appendChild(tdFirst);
+
+                var tdLast = document.createElement('td');
+                tdLast.textContent = a.lastName != null ? a.lastName : '';
+                tr.appendChild(tdLast);
+
+                // Actions cell (Modifier / Supprimer) - no logic yet
+                var tdActions = document.createElement('td');
+
+                var btnEdit = document.createElement('button');
+                btnEdit.type = 'button';
+                btnEdit.textContent = 'Modifier';
+                btnEdit.className = 'btn-edit';
+                btnEdit.setAttribute('data-id', a.id);
+                tdActions.appendChild(btnEdit);
+
+                var spacer = document.createTextNode(' ');
+                tdActions.appendChild(spacer);
+
+                var btnDelete = document.createElement('button');
+                btnDelete.type = 'button';
+                btnDelete.textContent = 'Supprimer';
+                btnDelete.className = 'btn-delete';
+                btnDelete.setAttribute('data-id', a.id);
+                tdActions.appendChild(btnDelete);
+
+                tr.appendChild(tdActions);
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var mentorIdRaw = document.body.dataset.mentorId;
+            var mentorId = (mentorIdRaw && mentorIdRaw !== '0') ? Number(mentorIdRaw) : null;
+
+            if (mentorId === null) {
+                console.log('No mentor id available');
+                return;
+            }
+
+            fetch('/apprenticesByMentorId/' + mentorId)
+                .then(function (response) {
+                    if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+                    return response.json();
+                })
+                .then(function (apprentices) {
+                    renderApprenticesTable(apprentices);
+                })
+                .catch(function (err) {
+                    console.error('Failed to load apprentices:', err);
+                    // optionally show user-friendly message
+                });
+        });
+    })();
+</script>
 </body>
 </html>
