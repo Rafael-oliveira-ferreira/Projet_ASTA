@@ -1,7 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.modele.Defense;
-import altn72.projet_asta.modele.DefenseRepository;
+import altn72.projet_asta.model.Defense;
+import altn72.projet_asta.model.DefenseRepository;
 import org.springframework.stereotype.Service;
 
 @Service

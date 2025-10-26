@@ -1,7 +1,7 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.modele.Apprentice;
-import altn72.projet_asta.modele.dto.ApprenticeDto;
+import altn72.projet_asta.model.Apprentice;
+import altn72.projet_asta.model.dto.ApprenticeDto;
 import altn72.projet_asta.services.ApprenticeService;
 import org.springframework.web.bind.annotation.*;
 

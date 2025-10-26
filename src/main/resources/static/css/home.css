@@ -1,0 +1,189 @@
+:root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --topbar: #ff855a;
+    --chip-bg: #fff1ec;
+    --chip-text: #7a2e1d;
+    --border : #E5E7EB;
+    --ring: rgba(0, 0, 0, .08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.header {
+    background: var(--topbar);
+    box-shadow: 0 1px 0 var(--ring);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    gap: 12px;
+}
+
+.search {
+    position: relative;
+    flex: 0 1 480px;
+    max-width: 520px;
+    margin-inline: auto;
+}
+
+.search__input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 36px;
+    padding: 8px 12px 8px 36px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, .15);
+    background: #fff;
+    color: var(--text, #0f172a);
+    outline: none;
+    transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.search__input::placeholder {
+    color: #94a3b8;
+}
+
+.search__input:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .45), 0 0 0 6px rgba(0, 0, 0, .12);
+}
+
+.search__icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .55;
+    pointer-events: none;
+}
+
+.search--sm .search__input {
+    height: 32px;
+    padding-left: 34px;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+
+.btn-logout {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.btn-ghost {
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .6);
+    color: #fff;
+    background: transparent;
+    transition: background .15s ease, transform .05s;
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, .15);
+}
+
+.btn-ghost:active {
+    transform: translateY(1px);
+}
+
+.user_badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--ring);
+    font-weight: 600;
+}
+
+.main {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+}
+
+.main h1 {
+    font-size: 32px;
+    margin: 24px 0 8px;
+    text-align: center;
+}
+
+#apprentices-section {
+    max-width: 1200px;
+    margin: 12px auto;
+    padding: 0 16px;
+}
+
+/* Table “carte” : radius + ombre => séparer le collapse */
+#apprentices-table{
+    width:100%;
+    border-spacing:0;         /* important pour le radius */
+    border-collapse: separate;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+    overflow:hidden;
+}
+#apprentices-table thead th{
+    background:#F9FAFB;
+    text-align:left; font-weight:700;
+    padding:12px; border-bottom:1px solid var(--border);
+}
+#apprentices-table tbody td{
+    padding:12px; border-bottom:1px solid var(--border);
+    vertical-align:middle;
+}
+#apprentices-table tbody tr:last-child td{ border-bottom:0; }
+#apprentices-table tbody tr:hover{ background:#FAFAFF; }
+
+/* Colonne actions & petits boutons */
+#apprentices-table .col-actions,
+#apprentices-table td:last-child{ width:240px; }
+
+button{ font:inherit; }
+.btn-edit, .btn-delete{
+    padding:6px 10px; border-radius:8px; cursor:pointer;
+    border:1px solid #D1D5DB; background:#fff;
+}
+.btn-edit:hover{ box-shadow:0 0 0 3px rgba(0,0,0,.05); }
+.btn-delete{
+    border-color:#FECACA; color:#B42318; background:#FFF1F1;
+}
+.btn-delete:hover{ box-shadow:0 0 0 3px rgba(180,35,24,.12); }
+
+/* ====== Responsive ====== */
+@media (max-width: 900px){
+    .nav{ grid-template-columns: 1fr; gap:6px; }
+    .user_badge{ justify-self:start; }
+}

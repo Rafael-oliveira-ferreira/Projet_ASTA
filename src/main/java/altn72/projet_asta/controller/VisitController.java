@@ -1,6 +1,6 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.modele.Visit;
+import altn72.projet_asta.model.Visit;
 import altn72.projet_asta.services.VisitService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

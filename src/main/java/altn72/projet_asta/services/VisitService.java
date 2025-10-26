@@ -1,7 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.modele.Visit;
-import altn72.projet_asta.modele.VisitRepository;
+import altn72.projet_asta.model.Visit;
+import altn72.projet_asta.model.VisitRepository;
 import org.springframework.stereotype.Service;
 
 @Service

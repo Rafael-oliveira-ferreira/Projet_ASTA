@@ -1,4 +1,4 @@
-package altn72.projet_asta.modele.tmp;
+package altn72.projet_asta.model.tmp;
 
 public class Report {
     private String subject;

@@ -1,11 +1,9 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.modele.ApprenticeshipMentor;
-import altn72.projet_asta.modele.UserAccount;
+import altn72.projet_asta.model.ApprenticeshipMentor;
+import altn72.projet_asta.model.UserAccount;
 import altn72.projet_asta.services.ApprenticeshipMentorService;
 import altn72.projet_asta.services.UserAccountService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,5 +50,12 @@ public class AuthController {
         }
 
         return "home";
+    }
+
+    @GetMapping ("/logout")
+    public String logoutPage() {
+        //supprimer les données du modele
+
+        return "connexion";
     }
 }

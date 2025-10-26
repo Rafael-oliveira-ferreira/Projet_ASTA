@@ -1,7 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.modele.AccountRepository;
-import altn72.projet_asta.modele.UserAccount;
+import altn72.projet_asta.model.AccountRepository;
+import altn72.projet_asta.model.UserAccount;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

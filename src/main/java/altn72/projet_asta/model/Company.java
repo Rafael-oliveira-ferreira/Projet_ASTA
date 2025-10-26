@@ -1,10 +1,8 @@
-package altn72.projet_asta.modele;
+package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "company")
@@ -25,4 +23,19 @@ public class Company {
     @Column(name = "access_info", nullable = false)
     private String accessInfo;
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public String getAccessInfo() {
+        return this.accessInfo;
+    }
 }

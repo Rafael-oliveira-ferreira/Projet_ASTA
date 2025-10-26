@@ -1,4 +1,4 @@
-package altn72.projet_asta.modele;
+package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
 import lombok.Setter;

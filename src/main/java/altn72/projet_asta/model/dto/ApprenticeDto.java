@@ -1,4 +1,4 @@
-package altn72.projet_asta.modele.dto;
+package altn72.projet_asta.model.dto;
 
 public record ApprenticeDto(
         Integer id, String program, String academicYear,

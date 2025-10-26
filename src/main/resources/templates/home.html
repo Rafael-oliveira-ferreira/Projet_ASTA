@@ -5,20 +5,43 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
     <title>Accueil</title>
-    <style>
-        table { border-collapse: collapse; width: 100%; max-width: 800px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #f5f5f5; }
-    </style>
 </head>
-<body th:attr="data-mentor-id=${apprenticementor != null ? apprenticementor.id : 0}">
-<h1 th:if="${apprenticementor != null}" th:text="|Bienvenue ${apprenticementor.firstName} ${apprenticementor.lastName}|"></h1>
-<h1 th:unless="${apprenticementor != null}">Bienvenue invité</h1>
+<body class="layout" th:attr="data-mentor-id=${apprenticementor != null ? apprenticementor.id : 0}">
+<header class="header">
+    <nav class="nav">
+        <!-- badge de bienvenue (à la place d’un bouton) -->
+        <span class="user_badge"
+              th:text="|Bienvenue ${apprenticementor.firstName} ${apprenticementor.lastName}|">
+        Bienvenue Jean Smith
+      </span>
+        <form class="search" role="search" th:action="@{/recherche}" method="get">
+            <!-- icône -->
+            <svg class="search__icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 21l-4.3-4.3m2.3-6.2A7 7 0 1 1 5 5a7 7 0 0 1 14 0z"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
 
-<!-- Apprentices table -->
+            <input type="search"
+                   class="search__input"
+                   name="q"
+                   placeholder="Rechercher..."
+                   th:value="${param.q}" />
+        </form>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit" class="btn-logout btn-ghost">Se déconnecter</button>
+        </form>
+    </nav>
+</header>
+
+<main class="main">
+    <h1>Bienvenue sur ASTA</h1>
+</main>
+
 <section id="apprentices-section" style="margin-top: 1rem;">
-    <h2>Apprentices</h2>
+    <h2>Apprentis</h2>
     <table id="apprentices-table" aria-describedby="apprentices-section">
         <thead>
         <tr>
@@ -33,7 +56,7 @@
         <!-- rows injected here -->
         </tbody>
     </table>
-    <p id="no-apprentices" style="display:none;">No apprentices found.</p>
+    <p id="no-apprentices" style="display:none;">Aucun apprenti trouvé</p>
 </section>
 
 <script>

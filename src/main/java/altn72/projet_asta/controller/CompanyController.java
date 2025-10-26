@@ -1,6 +1,6 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.modele.Company;
+import altn72.projet_asta.model.Company;
 import altn72.projet_asta.services.CompanyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.modele.Defense;
+import altn72.projet_asta.model.Defense;
 import altn72.projet_asta.services.DefenseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

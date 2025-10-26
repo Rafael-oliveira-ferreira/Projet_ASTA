@@ -1,16 +1,11 @@
-package altn72.projet_asta.modele;
+package altn72.projet_asta.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-@Getter
 @Setter
 @Entity
 @Table(name = "apprentice")
@@ -71,4 +66,60 @@ public class Apprentice {
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getProgram() {
+        return this.program;
+    }
+
+    public String getAcademicYear() {
+        return this.academicYear;
+    }
+
+    public String getMajor() {
+        return this.major;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public Company getCompany() {
+        return this.company;
+    }
+
+    public ApprenticeshipMentor getApprenticeshipMentor() {
+        return this.apprenticeshipMentor;
+    }
+
+    public Report getReport() {
+        return this.report;
+    }
+
+    public Defense getDefense() {
+        return this.defense;
+    }
+
+    public Visit getVisit() {
+        return this.visit;
+    }
+
+    public Mission getMission() {
+        return this.mission;
+    }
 }

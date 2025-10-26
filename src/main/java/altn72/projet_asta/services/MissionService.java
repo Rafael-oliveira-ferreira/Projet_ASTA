@@ -1,7 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.modele.Mission;
-import altn72.projet_asta.modele.MissionRepository;
+import altn72.projet_asta.model.Mission;
+import altn72.projet_asta.model.MissionRepository;
 import org.springframework.stereotype.Service;
 
 @Service

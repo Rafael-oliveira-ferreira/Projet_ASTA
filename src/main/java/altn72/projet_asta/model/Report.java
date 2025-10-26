@@ -1,4 +1,4 @@
-package altn72.projet_asta.modele;
+package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,14 +6,16 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "mission")
-public class Mission {
+@Table(name = "report")
+public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mission_id", nullable = false)
+    @Column(name = "evaluation_id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -21,11 +23,11 @@ public class Mission {
     @JoinColumn(name = "apprentice_id", nullable = false)
     private Apprentice apprentice;
 
-    @Column(name = "keywords", length = 500)
-    private String keywords;
+    @Column(name = "subject", length = 150)
+    private String subject;
 
-    @Column(name = "target_job", length = 100)
-    private String targetJob;
+    @Column(name = "grade", precision = 5, scale = 2)
+    private BigDecimal grade;
 
     @Column(name = "comments", length = 2000)
     private String comments;

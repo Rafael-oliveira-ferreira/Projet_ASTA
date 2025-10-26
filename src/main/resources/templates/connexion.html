@@ -1,25 +1,52 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Connexion</title>
-    <form th:action="@{/login}" method="post">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Se connecter</button>
-        <p th:if="${param.error}">Identifiants invalides.</p>
-        <p th:if="${param.logout}">Vous avez été déconnecté.</p>
-    </form>
-
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
-<body>
+<body class="login-page">
+<main class="login__container">
+    <section class="login-card">
+        <div class="login-card__media">
+            <img th:src="@{/img/illustration.png}" alt="" loading="lazy">
+        </div>
 
+        <div class="login-card__panel">
+            <h1 class="login-title">Connexion à ASTA</h1>
+
+            <form th:action="@{/login}" method="post" class="login-form">
+                <input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}" />
+
+                <label class="field">
+                    <span class="field__label">Email</span>
+                    <span class="field__control">
+              <svg class="field__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6h16v12H4zM4 6l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <input type="text" name="username" autocomplete="username" placeholder="jean.smith@exemple.com" required>
+            </span>
+                </label>
+
+                <label class="field">
+                    <span class="field__label">Mot de passe</span>
+                    <span class="field__control">
+              <svg class="field__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+            </span>
+                </label>
+
+                <button type="submit" class="btn btn--primary">Se connecter</button>
+
+                <p class="login-msg error" th:if="${param.error}">Identifiants invalides.</p>
+                <p class="login-msg success" th:if="${param.logout}">Vous avez été déconnecté.</p>
+            </form>
+        </div>
+    </section>
+</main>
 </body>
 </html>

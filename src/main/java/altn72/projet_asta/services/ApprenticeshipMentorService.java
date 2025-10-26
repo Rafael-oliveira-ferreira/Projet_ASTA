@@ -1,8 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.modele.Apprentice;
-import altn72.projet_asta.modele.ApprenticeshipMentor;
-import altn72.projet_asta.modele.ApprenticeshipMentorRepository;
+import altn72.projet_asta.model.ApprenticeshipMentor;
+import altn72.projet_asta.model.ApprenticeshipMentorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
