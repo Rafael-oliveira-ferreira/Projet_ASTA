@@ -73,34 +73,37 @@
             noMsg.style.display = 'none';
 
             apprentices.forEach(function (a) {
-                var tr = document.createElement('tr');
+                let tr = document.createElement('tr');
 
-                var tdId = document.createElement('td');
+                let tdId = document.createElement('td');
                 tdId.textContent = a.id != null ? a.id : '';
                 tr.appendChild(tdId);
 
-                var tdFirst = document.createElement('td');
+                let tdFirst = document.createElement('td');
                 tdFirst.textContent = a.firstName != null ? a.firstName : '';
                 tr.appendChild(tdFirst);
 
-                var tdLast = document.createElement('td');
+                let tdLast = document.createElement('td');
                 tdLast.textContent = a.lastName != null ? a.lastName : '';
                 tr.appendChild(tdLast);
 
                 // Actions cell (Modifier / Supprimer) - no logic yet
-                var tdActions = document.createElement('td');
+                let tdActions = document.createElement('td');
 
-                var btnEdit = document.createElement('button');
+                let btnEdit = document.createElement('button');
                 btnEdit.type = 'button';
                 btnEdit.textContent = 'Modifier';
                 btnEdit.className = 'btn-edit';
                 btnEdit.setAttribute('data-id', a.id);
+                btnEdit.addEventListener('click', function () {
+                    window.location.href = '/apprentice/' + a.id;
+                });
                 tdActions.appendChild(btnEdit);
 
-                var spacer = document.createTextNode(' ');
+                let spacer = document.createTextNode(' ');
                 tdActions.appendChild(spacer);
 
-                var btnDelete = document.createElement('button');
+                let btnDelete = document.createElement('button');
                 btnDelete.type = 'button';
                 btnDelete.textContent = 'Supprimer';
                 btnDelete.className = 'btn-delete';

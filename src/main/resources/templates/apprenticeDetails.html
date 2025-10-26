@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Accueil</title>
+</head>
+<body>
+<!-- Apprentice details -->
+<section id="apprentice-details-section" style="margin-top: 1rem;">
+    <h2>Détails de l'apprenti</h2>
+    <div id="apprentice-details-div">
+        <p>
+            <strong>Nom</strong>
+            <span th:text="${apprentice != null ? apprentice.lastName : ''}"></span>
+            <button type="button" class="btn-edit" aria-label="Modifier nom">✏️</button>
+        </p>
+        <p>
+            <strong>Prénom</strong>
+            <span th:text="${apprentice != null ? apprentice.firstName : ''}"></span>
+            <button type="button" class="btn-edit" aria-label="Modifier prénom">✏️</button>
+        </p>
+        <p>
+            <strong>Email</strong>
+            <span th:text="${apprentice != null ? apprentice.email : ''}"></span>
+            <button type="button" class="btn-edit" aria-label="Modifier email">✏️</button>
+        </p>
+        <p>
+            <strong>Numéro de téléphone :</strong>
+            <span th:text="${apprentice.phone}"></span>
+            <button type="button" class="btn-edit" aria-label="Modifier numéro de téléphone">✏️</button>
+        </p>
+        <p th:if="${apprentice.major}">
+            <strong>Spécialité :</strong>
+            <span th:text="${apprentice.program}"></span>
+            <span th:text=" ${apprentice.major}"></span>
+            <button type="button" class="btn-edit" aria-label="Modifier programme et majeur">✏️</button>
+        </p>
+        <p th:if="${apprentice.academicYear}">
+            <strong>Année académique :</strong>
+            <span th:text="${apprentice.academicYear}"></span>
+        </p>
+        <div th:if="${apprentice.company}">
+            <p>
+                <strong>Entreprise :</strong>
+                <span th:text="${apprentice.company.companyName}"></span>
+            </p>
+
+            <p>
+                <strong>Adresse :</strong>
+                <span th:text="${apprentice.company.address != null ? apprentice.company.address : 'Non renseigné'}"></span>
+            </p>
+
+            <p>
+                <strong>Informations d'accès :</strong>
+                <span th:text="${apprentice.company.accessInfo != null ? apprentice.company.accessInfo : 'Non renseigné'}"></span>
+            </p>
+        </div>
+        <p th:if="${apprentice.mission}">
+            <strong>Mission :</strong>
+            <span th:text="${apprentice.mission.keywords}"></span>
+        </p>
+        <p th:unless="${apprentice.mission}">
+            <strong>Mission :</strong>
+            <span>A définir</span>
+            <button type="button" class="btn-add" aria-label="Ajouter mission">+</button>
+        </p>
+        <p th:if="${apprentice.visit}">
+            <strong>Visite :</strong>
+            <span th:text="(${apprentice.visit.format})"></span>,
+            <span th:text="${#dates.format(apprentice.visit.visitDate, 'dd/MM/yyyy')}"></span>
+        </p>
+        <p th:unless="${apprentice.visit}">
+            <strong>Visite :</strong>
+            <span>A définir</span>
+            <button type="button" class="btn-add" aria-label="Ajouter visite">+</button>
+        </p>
+        <p th:if="${apprentice.defense}">
+            <strong>Soutenance :</strong>
+            <span th:text="${#dates.format(apprentice.defense.defenseDate, 'dd/MM/yyyy')}"></span>
+        </p>
+        <p th:unless="${apprentice.defense}">
+            <strong>Soutenance :</strong>
+            <span>A définir</span>
+            <button type="button" class="btn-add" aria-label="Ajouter soutenance">+</button>
+        </p>
+        <p th:if="${apprentice.report}">
+            <strong>Rapport :</strong>
+            <span th:text="${apprentice.report.subject}"></span>
+        </p>
+        <p th:unless="${apprentice.report}">
+            <strong>Rapport :</strong>
+            <span>A définir</span>
+            <button type="button" class="btn-add" aria-label="Ajouter rapport">+</button>
+        </p>
+    </div>
+</section>
+</body>
+</html>
