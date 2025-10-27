@@ -11,8 +11,8 @@ public interface ApprenticeRepository extends JpaRepository<Apprentice,Integer> 
 
     @Query("""
     SELECT DISTINCT a FROM Apprentice a
-        LEFT JOIN a.company c
-        LEFT JOIN a.mission m
+        LEFT JOIN Company c ON a.company.id = c.id
+        LEFT JOIN Mission m ON a.id = m.apprentice.id
         WHERE a.apprenticeshipMentor.id = :mentorId
           AND (
                 :query IS NULL

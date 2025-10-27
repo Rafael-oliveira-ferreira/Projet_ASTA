@@ -47,11 +47,7 @@ public class ApprenticeController {
                         a.getId(), a.getProgram(), a.getAcademicYear(),
                         a.getMajor(), a.getFirstName(), a.getLastName(), a.getEmail(), a.getPhone(),
                         a.getCompany() != null ? a.getCompany().getId() : null,
-                        a.getApprenticeshipMentor() != null ? a.getApprenticeshipMentor().getId() : null,
-                        a.getDefense() != null ? a.getDefense().getId() : null,
-                        a.getMission() != null ? a.getMission().getId() : null,
-                        a.getReport() != null ? a.getReport().getId() : null,
-                        a.getVisit() != null ? a.getVisit().getId() : null
+                        a.getApprenticeshipMentor() != null ? a.getApprenticeshipMentor().getId() : null
                 ))
                 .toList();
     }
@@ -64,11 +60,7 @@ public class ApprenticeController {
                         a.getId(), a.getProgram(), a.getAcademicYear(),
                         a.getMajor(), a.getFirstName(), a.getLastName(), a.getEmail(), a.getPhone(),
                         a.getCompany() != null ? a.getCompany().getId() : null,
-                        a.getApprenticeshipMentor() != null ? a.getApprenticeshipMentor().getId() : null,
-                        a.getDefense() != null ? a.getDefense().getId() : null,
-                        a.getMission() != null ? a.getMission().getId() : null,
-                        a.getReport() != null ? a.getReport().getId() : null,
-                        a.getVisit() != null ? a.getVisit().getId() : null
+                        a.getApprenticeshipMentor() != null ? a.getApprenticeshipMentor().getId() : null
                 ))
                 .toList();
     }

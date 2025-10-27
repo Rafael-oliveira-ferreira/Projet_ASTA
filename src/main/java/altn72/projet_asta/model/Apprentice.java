@@ -47,26 +47,6 @@ public class Apprentice {
     @JsonIgnore
     private ApprenticeshipMentor apprenticeshipMentor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "report_id")
-    private Report report;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "defense_id")
-    private Defense defense;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "visit_id")
-    private Visit visit;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "mission_id")
-    private Mission mission;
-
     public Integer getId() {
         return this.id;
     }
@@ -105,21 +85,5 @@ public class Apprentice {
 
     public ApprenticeshipMentor getApprenticeshipMentor() {
         return this.apprenticeshipMentor;
-    }
-
-    public Report getReport() {
-        return this.report;
-    }
-
-    public Defense getDefense() {
-        return this.defense;
-    }
-
-    public Visit getVisit() {
-        return this.visit;
-    }
-
-    public Mission getMission() {
-        return this.mission;
     }
 }

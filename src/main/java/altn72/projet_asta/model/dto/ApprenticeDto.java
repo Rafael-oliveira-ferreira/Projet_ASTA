@@ -10,9 +10,5 @@ public record ApprenticeDto(
         String email,
         String phone,
         Integer companyId,
-        Integer mentorId,
-        Integer defenseId,
-        Integer missionId,
-        Integer reportId,
-        Integer visitId
+        Integer mentorId
 ) {}
