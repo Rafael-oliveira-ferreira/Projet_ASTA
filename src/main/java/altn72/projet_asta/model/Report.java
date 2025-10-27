@@ -1,14 +1,12 @@
 package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "report")
@@ -32,4 +30,23 @@ public class Report {
     @Column(name = "comments", length = 2000)
     private String comments;
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public Apprentice getApprentice() {
+        return this.apprentice;
+    }
+
+    public String getSubject() {
+        return this.subject;
+    }
+
+    public BigDecimal getGrade() {
+        return this.grade;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
 }

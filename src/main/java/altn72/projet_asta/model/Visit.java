@@ -1,14 +1,12 @@
 package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "visit")
@@ -33,4 +31,23 @@ public class Visit {
     @Column(name = "comments", length = 1000)
     private String comments;
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public Apprentice getApprentice() {
+        return this.apprentice;
+    }
+
+    public LocalDate getVisitDate() {
+        return this.visitDate;
+    }
+
+    public String getFormat() {
+        return this.format;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
 }

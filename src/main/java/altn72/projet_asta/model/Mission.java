@@ -1,12 +1,10 @@
 package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "mission")
@@ -30,4 +28,23 @@ public class Mission {
     @Column(name = "comments", length = 2000)
     private String comments;
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public Apprentice getApprentice() {
+        return this.apprentice;
+    }
+
+    public String getKeywords() {
+        return this.keywords;
+    }
+
+    public String getTargetJob() {
+        return this.targetJob;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
 }

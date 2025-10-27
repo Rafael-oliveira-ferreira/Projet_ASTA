@@ -3,9 +3,11 @@ package altn72.projet_asta.services;
 import altn72.projet_asta.model.Apprentice;
 import altn72.projet_asta.model.ApprenticeRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApprenticeService {
@@ -29,10 +31,8 @@ public class ApprenticeService {
 
     public void updateApprentice(Integer idApprentice, Apprentice apprentice) {
         Apprentice existingApprentice = apprenticeRepository.findById(idApprentice).orElseThrow();
-        if (existingApprentice != null) {
-            BeanUtils.copyProperties(apprentice, existingApprentice, "id");
-            apprenticeRepository.save(existingApprentice);
-        }
+        BeanUtils.copyProperties(apprentice, existingApprentice, "id");
+        apprenticeRepository.save(existingApprentice);
     }
 
     public void deleteApprentice(Integer id) {
@@ -41,5 +41,9 @@ public class ApprenticeService {
 
     public List<Apprentice> findByMentorId(Integer mentorId) {
         return apprenticeRepository.findByApprenticeshipMentor_Id(mentorId);
+    }
+
+    public List<Apprentice> searchApprentices(Integer mentorId, String query) {
+        return apprenticeRepository.searchApprentices(mentorId, query);
     }
 }

@@ -1,7 +1,6 @@
 package altn72.projet_asta.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -9,7 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Getter
 @Setter
 @Entity
 @Table(name = "defense")
@@ -33,4 +31,23 @@ public class Defense {
     @Column(name = "comments", length = 2000)
     private String comments;
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public Apprentice getApprentice() {
+        return this.apprentice;
+    }
+
+    public LocalDate getDefenseDate() {
+        return this.defenseDate;
+    }
+
+    public BigDecimal getGrade() {
+        return this.grade;
+    }
+
+    public String getComments() {
+        return this.comments;
+    }
 }

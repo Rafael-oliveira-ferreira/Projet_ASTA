@@ -56,4 +56,21 @@ public class ApprenticeController {
                 .toList();
     }
 
+    @GetMapping("/recherche/{idMentor}")
+    @ResponseBody
+    public List<ApprenticeDto> searchApprentices(@PathVariable Integer idMentor, @RequestParam String query) {
+        return apprenticeService.searchApprentices(idMentor, query).stream()
+                .map(a -> new ApprenticeDto(
+                        a.getId(), a.getProgram(), a.getAcademicYear(),
+                        a.getMajor(), a.getFirstName(), a.getLastName(), a.getEmail(), a.getPhone(),
+                        a.getCompany() != null ? a.getCompany().getId() : null,
+                        a.getApprenticeshipMentor() != null ? a.getApprenticeshipMentor().getId() : null,
+                        a.getDefense() != null ? a.getDefense().getId() : null,
+                        a.getMission() != null ? a.getMission().getId() : null,
+                        a.getReport() != null ? a.getReport().getId() : null,
+                        a.getVisit() != null ? a.getVisit().getId() : null
+                ))
+                .toList();
+    }
+
 }
