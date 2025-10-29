@@ -7,4 +7,4 @@ COPY . .
 RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
 
 # Démarre ton application Spring Boot
-CMD ["java", "-jar", "target/Proje_ASTA-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/Projet_ASTA-0.0.1-SNAPSHOT.jar"]
