@@ -12,6 +12,11 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    @GetMapping("/companies")
+    public Iterable<Company> getAllCompanies() {
+        return companyService.getAllCompanies();
+    }
+
     @GetMapping("/company/{idCompany}")
     public Company getCompanyById(@PathVariable Integer idCompany) {
         return companyService.getCompanyById(idCompany);

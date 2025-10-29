@@ -25,8 +25,8 @@ public class ApprenticeService {
         return apprenticeRepository.findById(id).orElse(null);
     }
 
-    public void addApprentice(Apprentice apprentice) {
-        apprenticeRepository.save(apprentice);
+    public Apprentice addApprentice(Apprentice apprentice) {
+        return apprenticeRepository.save(apprentice);
     }
 
     public void updateApprentice(Integer idApprentice, Apprentice apprentice) {
@@ -36,7 +36,8 @@ public class ApprenticeService {
     }
 
     public void deleteApprentice(Integer id) {
-        apprenticeRepository.deleteById(id);
+        Apprentice existingApprentice = apprenticeRepository.findById(id).orElseThrow();
+        apprenticeRepository.delete(existingApprentice);
     }
 
     public List<Apprentice> findByMentorId(Integer mentorId) {

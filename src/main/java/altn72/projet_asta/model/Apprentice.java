@@ -44,7 +44,6 @@ public class Apprentice {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "apprenticeship_mentor_id")
-    @JsonIgnore
     private ApprenticeshipMentor apprenticeshipMentor;
 
     public Integer getId() {

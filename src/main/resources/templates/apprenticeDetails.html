@@ -396,7 +396,7 @@
             method: 'POST',
             headers: headers,
             body: payload,
-            credentials: 'same-origin' // ensure session cookie is sent for CSRF validation
+            credentials: 'same-origin'
         })
             .then(function (response) {
                 if (!response.ok) return response.text().then(t => {
