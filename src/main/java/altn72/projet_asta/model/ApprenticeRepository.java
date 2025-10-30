@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ApprenticeRepository extends JpaRepository<Apprentice,Integer> {
     List<Apprentice> findByApprenticeshipMentor_Id(Integer mentorId);
+    Boolean existsByEmail(String email);
 
     @Query("""
     SELECT DISTINCT a FROM Apprentice a

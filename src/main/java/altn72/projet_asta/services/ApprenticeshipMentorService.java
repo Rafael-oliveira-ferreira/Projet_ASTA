@@ -1,5 +1,6 @@
 package altn72.projet_asta.services;
 
+import altn72.projet_asta.exception.ResourceNotFoundException;
 import altn72.projet_asta.model.ApprenticeshipMentor;
 import altn72.projet_asta.model.ApprenticeshipMentorRepository;
 import org.springframework.beans.BeanUtils;
@@ -14,15 +15,18 @@ public class ApprenticeshipMentorService {
     }
 
     public ApprenticeshipMentor getApprenticeshipMentorById(Integer id) {
-        return apprenticeshipMentorRepository.findById(id).orElse(null);
+        return apprenticeshipMentorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("ApprenticeshipMentor", id));
     }
 
     public ApprenticeshipMentor getApprenticeshipMentorByUserId(Integer id) {
-        return apprenticeshipMentorRepository.findByIdAccountId(id).orElse(null);
+        return apprenticeshipMentorRepository.findByIdAccountId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("ApprenticeshipMentor", id));
     }
 
     public void updateApprenticeshipMentor(Integer idApprenticeshipMentor, ApprenticeshipMentor apprenticeshipMentor) {
-        ApprenticeshipMentor existingMentor = apprenticeshipMentorRepository.findById(idApprenticeshipMentor).orElseThrow();
+        ApprenticeshipMentor existingMentor = apprenticeshipMentorRepository.findById(idApprenticeshipMentor)
+                .orElseThrow(() -> new ResourceNotFoundException("ApprenticeshipMentor", idApprenticeshipMentor));
         BeanUtils.copyProperties(apprenticeshipMentor, existingMentor, "id");
         apprenticeshipMentorRepository.save(existingMentor);
     }

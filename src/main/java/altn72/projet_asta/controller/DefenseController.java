@@ -1,10 +1,8 @@
 package altn72.projet_asta.controller;
 
 import altn72.projet_asta.model.Defense;
-import altn72.projet_asta.model.dto.ApprenticeDto;
 import altn72.projet_asta.model.dto.DefenseDto;
 import altn72.projet_asta.services.DefenseService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +21,8 @@ public class DefenseController {
     }
 
     @PostMapping("/createDefense/")
-    public ResponseEntity<Defense> createCompany(@RequestBody Defense newDefense) {
-        Defense defense = defenseService.addDefense(newDefense);
-        return ResponseEntity.ok(defense);
+    public void createDefense(@RequestBody Defense newDefense) {
+        defenseService.addDefense(newDefense);
     }
 
     @PutMapping("/updateDefense/{idDefense}")

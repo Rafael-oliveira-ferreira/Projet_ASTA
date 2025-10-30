@@ -3,14 +3,11 @@ package altn72.projet_asta.controller;
 import altn72.projet_asta.model.Apprentice;
 import altn72.projet_asta.model.dto.ApprenticeDto;
 import altn72.projet_asta.services.ApprenticeService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ApprenticeController {
@@ -41,15 +38,13 @@ public class ApprenticeController {
 
     @PostMapping("/createApprentice/")
     @ResponseBody
-    public ResponseEntity<Apprentice> createApprentice(@RequestBody Apprentice newApprentice) {
-        Apprentice apprenticeDto = apprenticeService.addApprentice(newApprentice);
-        return new ResponseEntity<>(apprenticeDto, HttpStatus.CREATED);
+    public void createApprentice(@RequestBody Apprentice newApprentice) {
+        apprenticeService.addApprentice(newApprentice);
     }
 
     @GetMapping("/apprenticesByMentorId/{idMentor}")
     @ResponseBody
     public List<ApprenticeDto> getApprenticesByMentorId(@PathVariable("idMentor") Integer idMentor) {
-        // Convert Apprentice entities to ApprenticeDto but remove apprentice with Program "Gradué"
         return apprenticeService.findByMentorId(idMentor).stream()
                 .filter(a -> !"Gradué".equals(a.getProgram()))
                 .map(a -> new ApprenticeDto(

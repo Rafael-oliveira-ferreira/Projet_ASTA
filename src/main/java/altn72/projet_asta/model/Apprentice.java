@@ -1,6 +1,5 @@
 package altn72.projet_asta.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;

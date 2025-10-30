@@ -1,11 +1,8 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.model.Defense;
 import altn72.projet_asta.model.Mission;
-import altn72.projet_asta.model.dto.DefenseDto;
 import altn72.projet_asta.model.dto.MissionDto;
 import altn72.projet_asta.services.MissionService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +21,8 @@ public class MissionController {
     }
 
     @PostMapping("/createMission/")
-    public ResponseEntity<Defense> createCompany(@RequestBody Mission newMission) {
-        Mission mission = missionService.addMission(newMission);
-        return ResponseEntity.ok().build();
+    public void createMission(@RequestBody Mission newMission) {
+        missionService.addMission(newMission);
     }
 
     @PutMapping("/updateMission/{idMission}")

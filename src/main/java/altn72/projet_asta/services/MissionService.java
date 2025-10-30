@@ -1,6 +1,6 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.model.Defense;
+import altn72.projet_asta.exception.ResourceNotFoundException;
 import altn72.projet_asta.model.Mission;
 import altn72.projet_asta.model.MissionRepository;
 import org.springframework.beans.BeanUtils;
@@ -17,15 +17,17 @@ public class MissionService {
     }
 
     public Mission getMissionById(Integer id) {
-        return missionRepository.findById(id).orElse(null);
+        return missionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Mission", id));
     }
 
-    public Mission addMission(Mission mission) {
-        return missionRepository.save(mission);
+    public void addMission(Mission mission) {
+        missionRepository.save(mission);
     }
 
     public void updateMission(Integer idMission, Mission mission) {
-        Mission existingMission = missionRepository.findById(idMission).orElseThrow();
+        Mission existingMission = missionRepository.findById(idMission)
+                .orElseThrow(() -> new ResourceNotFoundException("Mission", idMission));
         if (existingMission != null) {
             BeanUtils.copyProperties(mission, existingMission, "id");
             missionRepository.save(existingMission);

@@ -1,6 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.model.Apprentice;
+import altn72.projet_asta.exception.DuplicateResourceException;
+import altn72.projet_asta.exception.ResourceNotFoundException;
 import altn72.projet_asta.model.Company;
 import altn72.projet_asta.model.CompanyRepository;
 import org.springframework.beans.BeanUtils;
@@ -21,15 +22,20 @@ public class CompanyService {
     }
 
     public Company getCompanyById(Integer id) {
-        return companyRepository.findById(id).orElse(null);
+        return companyRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Company", id));
     }
 
     public void addCompany(Company company) {
+        if (company.getCompanyName() != null && companyRepository.existsByCompanyName(company.getCompanyName())) {
+            throw new DuplicateResourceException("Company", "company name", company.getCompanyName());
+        }
         companyRepository.save(company);
     }
 
     public void updateCompany(Integer idCompany, Company company) {
-        Company existingCompany = companyRepository.findById(idCompany).orElseThrow();
+        Company existingCompany = companyRepository.findById(idCompany)
+                .orElseThrow(() -> new ResourceNotFoundException("Company", idCompany));
         if (existingCompany != null) {
             BeanUtils.copyProperties(company, existingCompany, "id");
             companyRepository.save(existingCompany);

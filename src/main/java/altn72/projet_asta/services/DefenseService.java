@@ -1,7 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.model.Apprentice;
-import altn72.projet_asta.model.Company;
+import altn72.projet_asta.exception.DuplicateResourceException;
+import altn72.projet_asta.exception.ResourceNotFoundException;
 import altn72.projet_asta.model.Defense;
 import altn72.projet_asta.model.DefenseRepository;
 import org.springframework.beans.BeanUtils;
@@ -18,15 +18,20 @@ public class DefenseService {
     }
 
     public Defense getDefenseById(Integer id) {
-        return defenseRepository.findById(id).orElse(null);
+        return defenseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Defense", id));
     }
 
-    public Defense addDefense(Defense defense) {
-        return defenseRepository.save(defense);
+    public void addDefense(Defense defense) {
+        if (defense.getDefenseDate() != null && defenseRepository.existsByDefenseDate(defense.getDefenseDate())) {
+            throw new DuplicateResourceException("Company", "company name", defense.getDefenseDate());
+        }
+        defenseRepository.save(defense);
     }
 
     public void updateDefense(Integer idDefense, Defense defense) {
-        Defense existingDefense = defenseRepository.findById(idDefense).orElseThrow();
+        Defense existingDefense = defenseRepository.findById(idDefense)
+                .orElseThrow(() -> new ResourceNotFoundException("defense", idDefense));
         if (existingDefense != null) {
             BeanUtils.copyProperties(defense, existingDefense, "id");
             defenseRepository.save(existingDefense);

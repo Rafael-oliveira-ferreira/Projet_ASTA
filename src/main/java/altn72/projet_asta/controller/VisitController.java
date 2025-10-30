@@ -1,11 +1,8 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.model.Defense;
 import altn72.projet_asta.model.Visit;
-import altn72.projet_asta.model.dto.ReportDto;
 import altn72.projet_asta.model.dto.VisitDto;
 import altn72.projet_asta.services.VisitService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +21,8 @@ public class VisitController {
     }
 
     @PostMapping("/createVisit/")
-    public ResponseEntity<Visit> createCompany(@RequestBody Visit newVisit) {
-        Visit visit = visitService.addVisit(newVisit);
-        return ResponseEntity.ok(visit);
+    public void createVisit(@RequestBody Visit newVisit) {
+        visitService.addVisit(newVisit);
     }
 
     @PutMapping("/updateVisit/{idVisit}")

@@ -3,11 +3,10 @@ package altn72.projet_asta.services;
 import altn72.projet_asta.model.Apprentice;
 import altn72.projet_asta.model.ApprenticeRepository;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import altn72.projet_asta.exception.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ApprenticeService {
@@ -22,15 +21,20 @@ public class ApprenticeService {
     }
 
     public Apprentice getApprenticeById(Integer id) {
-        return apprenticeRepository.findById(id).orElse(null);
+        return apprenticeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Apprentice", id));
     }
 
-    public Apprentice addApprentice(Apprentice apprentice) {
-        return apprenticeRepository.save(apprentice);
+    public void addApprentice(Apprentice apprentice) {
+        if (apprentice.getEmail() != null && apprenticeRepository.existsByEmail(apprentice.getEmail())) {
+            throw new DuplicateResourceException("Apprentice", "email", apprentice.getEmail());
+        }
+        apprenticeRepository.save(apprentice);
     }
 
     public void updateApprentice(Integer idApprentice, Apprentice apprentice) {
-        Apprentice existingApprentice = apprenticeRepository.findById(idApprentice).orElseThrow();
+        Apprentice existingApprentice = apprenticeRepository.findById(idApprentice)
+                .orElseThrow(() -> new ResourceNotFoundException("Apprentice", idApprentice));
         BeanUtils.copyProperties(apprentice, existingApprentice, "id");
         apprenticeRepository.save(existingApprentice);
     }

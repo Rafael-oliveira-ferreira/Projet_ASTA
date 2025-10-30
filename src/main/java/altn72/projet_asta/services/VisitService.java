@@ -1,6 +1,7 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.model.Report;
+import altn72.projet_asta.exception.DuplicateResourceException;
+import altn72.projet_asta.exception.ResourceNotFoundException;
 import altn72.projet_asta.model.Visit;
 import altn72.projet_asta.model.VisitRepository;
 import org.springframework.beans.BeanUtils;
@@ -17,15 +18,20 @@ public class VisitService {
     }
 
     public Visit getVisitById(Integer id) {
-        return visitRepository.findById(id).orElse(null);
+        return visitRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Visit", id));
     }
 
-    public Visit addVisit(Visit visit) {
-        return visitRepository.save(visit);
+    public void addVisit(Visit visit) {
+        if (visit.getVisitDate() != null && visitRepository.existsByVisitDate(visit.getVisitDate())) {
+            throw new DuplicateResourceException("Company", "company name", visit.getVisitDate());
+        }
+        visitRepository.save(visit);
     }
 
     public void updateVisit(Integer idVisit, Visit visit) {
-        Visit existingVisit = visitRepository.findById(idVisit).orElseThrow();
+        Visit existingVisit = visitRepository.findById(idVisit)
+                .orElseThrow(() -> new ResourceNotFoundException("Visit", idVisit));
         if (existingVisit != null) {
             BeanUtils.copyProperties(visit, existingVisit, "id");
             visitRepository.save(existingVisit);

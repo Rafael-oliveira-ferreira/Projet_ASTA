@@ -1,6 +1,6 @@
 package altn72.projet_asta.services;
 
-import altn72.projet_asta.model.Mission;
+import altn72.projet_asta.exception.ResourceNotFoundException;
 import altn72.projet_asta.model.Report;
 import altn72.projet_asta.model.ReportRepository;
 import org.springframework.beans.BeanUtils;
@@ -16,16 +16,18 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
-    public Report getReportById(int idMission) {
-        return reportRepository.findById(idMission).orElse(null);
+    public Report getReportById(int id) {
+        return reportRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Report", id));
     }
 
-    public Report addReport(Report report) {
-        return reportRepository.save(report);
+    public void addReport(Report report) {
+        reportRepository.save(report);
     }
 
     public void updateReport(Integer idReport, Report report) {
-        Report existingReport = reportRepository.findById(idReport).orElseThrow();
+        Report existingReport = reportRepository.findById(idReport)
+                .orElseThrow(() -> new ResourceNotFoundException("Report", idReport));
         if (existingReport != null) {
             BeanUtils.copyProperties(report, existingReport, "id");
             reportRepository.save(existingReport);

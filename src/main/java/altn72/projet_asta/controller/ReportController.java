@@ -1,11 +1,8 @@
 package altn72.projet_asta.controller;
 
-import altn72.projet_asta.model.Defense;
 import altn72.projet_asta.model.Report;
-import altn72.projet_asta.model.dto.MissionDto;
 import altn72.projet_asta.model.dto.ReportDto;
 import altn72.projet_asta.services.ReportService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +21,8 @@ public class ReportController {
     }
 
     @PostMapping("/createReport/")
-    public ResponseEntity<Report> createCompany(@RequestBody Report newReport) {
-        Report report = reportService.addReport(newReport);
-        return ResponseEntity.ok(report);
+    public void createReport(@RequestBody Report newReport) {
+        reportService.addReport(newReport);
     }
 
     @PutMapping("/updateReport/{idReport}")
